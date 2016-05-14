@@ -10,6 +10,7 @@ var regid = "";
 var rvalue = ""; //the value of rating
 var status = "";
 var check = false;
+var fbrig = false;
 
 $(document).ready(function() {
     document.addEventListener("backbutton", onBackKeyDown, false);
@@ -89,6 +90,11 @@ $(document).ready(function() {
     //乘客
     $('#passenger').click(function() {
         nextPassenger();
+    });
+
+    //FB註冊dialog顯示
+    $('#register_button').click(function() {
+        $('#dialog').attr('style', 'display:table');
     });
 
     //confirm取消
@@ -261,6 +267,8 @@ function checkCarpool() {
                 window.location = local + 'index.html?data={"id":"' + id + '"}';
             } else if (xmlhttp.responseText.trim() === "uncertified") {
                 getPersonalData();
+                $('#register_button').attr('style', 'display:none');
+                setPic();
             } else {
                 $('#login1').attr('style', 'display:none');
                 $('#login2').attr('style', 'display:none');
