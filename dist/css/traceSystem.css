@@ -1,0 +1,32 @@
+html,
+body,
+#map-canvas {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.map-block {
+    /*height: 100%;*/
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    /*z-index: -1;*/
+    position: fixed;
+}
+
+.footer {
+    background-color: #fff;
+    border: none;
+    bottom: 0px;
+    color: #000;
+    font-family: 微軟正黑體;
+    font-size: 11pt;
+    height: 50px;
+    line-height: 50px;
+    margin: 0px;
+    padding: 0px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+}

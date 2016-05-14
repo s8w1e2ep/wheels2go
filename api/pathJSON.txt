@@ -1,0 +1,9 @@
+[
+[{"order":"1","key":"0","did":"851374871564938","percentage":"43","on_d":"33","off_d":"695","wait":"96"},{"order":"2","key":"1","did":"1046779538684826","percentage":"53","on_d":"0","off_d":"20","wait":"210"},
+{"order":"2","key":"2","did":"902038749833906","percentage":"53","on_d":"0","off_d":"20","wait":"207"},{"order":"2","key":"3","did":"860467000642654","percentage":"53","on_d":"0","off_d":"20","wait":"202"}],
+[{"order":"1","key":"1","did":"1046779538684826","percentage":"96","on_d":"33","off_d":"20","wait":"98"}],
+[{"order":"1","key":"2","did":"902038749833906","percentage":"96","on_d":"33","off_d":"20","wait":"95"}],
+[{"order":"1","key":"3","did":"860467000642654","percentage":"96","on_d":"33","off_d":"20","wait":"89"}]
+]
+{"id":"860467000642654","pnum":"9","result":[[{"order":"1","key":"0","did":"851374871564938","percentage":"43","on_d":"33","off_d":"695","wait":"96"},{"order":"2","key":"1","did":"1046779538684826","percentage":"53","on_d":"0","off_d":"20","wait":"210"},{"order":"2","key":"2","did":"902038749833906","percentage":"53","on_d":"0","off_d":"20","wait":"207"},{"order":"2","key":"3","did":"860467000642654","percentage":"53","on_d":"0","off_d":"20","wait":"202"}],[{"order":"1","key":"1","did":"1046779538684826","percentage":"96","on_d":"33","off_d":"20","wait":"98"}],[{"order":"1","key":"2","did":"902038749833906","percentage":"96","on_d":"33","off_d":"20","wait":"95"}],[{"order":"1","key":"3","did":"860467000642654","percentage":"96","on_d":"33","off_d":"20","wait":"89"}]
+]}

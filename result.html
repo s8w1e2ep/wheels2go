@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- JQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
+    <!-- google material lite -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+    <!-- custom css and js -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Uses a header that contracts as the page scrolls down. -->
+    <style>
+    .waterfall-demo-header-nav .mdl-navigation__link:last-of-type {
+        padding-right: 0;
+    }
+
+    .parent {
+        background: #FFF38F;
+    }
+    </style>
+</head>
+
+<body id="mbody">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall">
+            <!-- Top row, always visible -->
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="android-title mdl-layout-title">
+                <a id="dsgr" href="index.html"><img src="assets/logo.png" width="50%"></a>
+              </span>
+                <div class="mdl-layout-spacer"></div>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <header class="drawer-header mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+                <!-- <img src="" alt="user" class="avatar"> -->
+                <img id="user_image" src="img/circle.png" alt="user" class="avatar">
+                <div class="avatar-dropdown">
+                    <span id="pname2">姓名</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                        <i class="material-icons" role="presentation">&#xE5C6;</i>
+                        <span class="visuallyhidden">Personal Info</span>
+                    </button>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+                        <li class="mdl-menu__item" id="pname">姓名</li>
+                        <li class="mdl-menu__item" id="tel">手機</li>
+                        <a href="" id="edit">
+                            <li class="mdl-menu__item"><i class="material-icons">&#xE3C9;</i>編輯</li>
+                        </a>
+                    </ul>
+                </div>
+            </header>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="" id="logo"><i class="material-icons">&#xE88A;</i>主頁</a>
+                <a class="mdl-navigation__link" href="" id="board"><i class="material-icons">&#xE616;</i>公告欄</a>
+                <a class="mdl-navigation__link" href="" id="wall"><i class="material-icons">&#xE0BF;</i>動態牆</a>
+                <a class="mdl-navigation__link" href="" id="friendlist"><i class="material-icons">&#xE7EF;</i>朋友</a>
+                <a class="mdl-navigation__link" href="" id="setting"><i class="material-icons">&#xE8B8;</i>設定</a>
+                <a class="mdl-navigation__link" href="" id="about"><i class="material-icons">&#xE88E;</i>關於</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <center>
+                <div id="table1">
+                </div>
+                <div id="table2">
+                </div>
+                <div id="table3">
+                </div>
+                <!-- Dialog of driver info -->
+                <div id="dialog" class="wrapperOutside">
+                    <div class="wrapperInside">
+                        <div class="dialogContainer">
+                            <div class="dialogContent">
+                                <div class="dialogContentTitle" style="text-align: center;">司機資訊</div>
+                                <div id="dbody" class="dialogContentBody" style="text-align: center;">
+                                </div>
+                                <div>
+                                    <button id="cancel" class="mdl-button  mdl-js-button" style="text-align: left; width:47%;">取消</button>
+                                    <button id="submit" class="mdl-button  mdl-js-button mdl-button--primary" style="text-align: right; width:47%;">送出</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </center>
+        </main>
+    </div>
+    <script src="dist/js/result.js"></script>
+</body>
+
+</html>
