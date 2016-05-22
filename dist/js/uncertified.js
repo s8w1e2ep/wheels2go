@@ -5,6 +5,17 @@ var num = 0;
 
 $(document).ready(function() {
     getUncertified();
+
+    var element = document.body;
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swiperight", function(){
+        $('.mdl-layout__drawer').addClass('is-visible').attr('aria-hidden', 'false');
+        $('.mdl-layout__obfuscator').addClass('is-visible');
+    });
+
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swipeleft", function(){
+        $('.mdl-layout__drawer').removeClass('is-visible').attr('aria-hidden', 'true');
+        $('.mdl-layout__obfuscator').removeClass('is-visible');
+    });
 });
 
 function initialization() {
@@ -15,10 +26,10 @@ function initialization() {
     for (var i = 0; i < data.length; i++) {
         var background = "";
 
-        if (data[i]['aid'].length == 10 && data[i]['aid'].substr(0, 2) === "09")
-            setPic(i, data[i]['aid']);
+        if (data[i].aid.length == 10 && data[i].aid.substr(0, 2) === "09")
+            setPic(i, data[i].aid);
         else
-            background = 'http://graph.facebook.com/' + data[i]['aid'] + '/picture/?type=normal';
+            background = 'http://graph.facebook.com/' + data[i].aid + '/picture/?type=normal';
 
         str += '<div id="user' + i + '" class="mdl-cell--middle">';
 
@@ -37,21 +48,21 @@ function initialization() {
         str += '<tbody>';
         str += '<tr>';
         str += '<td class="mdl-data-table__cell--non-numeric">Ticket</td>';
-        str += '<td>' + data[i]['ticket'] + '</td>';
+        str += '<td>' + data[i].ticket + '</td>';
         str += '</tr>';
         str += '<tr>';
         str += '<td class="mdl-data-table__cell--non-numeric">Facebook</td>';
-        str += '<td>' + data[i]['aid'] + '</td>';
+        str += '<td>' + data[i].aid + '</td>';
         str += '</tr>';
         str += '<td class="mdl-data-table__cell--non-numeric">Name</td>';
-        str += '<td>' + data[i]['name'] + '</td>';
+        str += '<td>' + data[i].name + '</td>';
         str += '</tr>';
         str += '<tr>';
         str += '<td class="mdl-data-table__cell--non-numeric">Gender</td>';
-        str += '<td>' + data[i]['gender'] + '</td>';
+        str += '<td>' + data[i].gender + '</td>';
         str += '</tr>';
         str += '<td class="mdl-data-table__cell--non-numeric">Phone</td>';
-        str += '<td>' + data[i]['phone'] + '</td>';
+        str += '<td>' + data[i].phone + '</td>';
         str += '</tr>';
         str += '</tbody>';
         str += '</table>';
@@ -92,7 +103,7 @@ function getUncertified() {
             console.log(data);
             initialization();
         }
-    }
+    };
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
@@ -103,7 +114,7 @@ function submit(i) {
     var text = $('#text' + i).val();
 
     var arr = {
-        aid: data[i]['aid'],
+        aid: data[i].aid,
         description: text
     };
 
@@ -118,7 +129,7 @@ function submit(i) {
 
             $('#number').attr('data-badge', num);
         }
-    }
+    };
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
@@ -136,7 +147,7 @@ function decline(i, aid) {
 
             $('#number').attr('data-badge', num);
         }
-    }
+    };
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
@@ -153,7 +164,7 @@ function setPic(i, id) {
                 var img = '#u' + i;
                 $(img).attr('src', res);
             }
-        }
+        };
         xmlhttp.send();
 }
 

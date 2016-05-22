@@ -26,27 +26,21 @@ $(document).ready(function() {
     setPic();
     setURL();
 
-    // x = document.getElementById("countdown");
-    // x.innerHTML = countdownnumber;
-    // countdownnumber--;
-    // countdownid = window.setInterval(countdownfunc, 1000);
-
     $('#accept').click(function() {
         confirmCarpool();
     });
-}).on('deviceready', onDeviceReady);
 
-// function countdownfunc() {
-//     x.innerHTML = countdownnumber;
-//     if (countdownnumber == 0) {
-//         alertify.success("倒數結束!");
-//         clearInterval(countdownid);
-//         window.location = local + 'index.html?data={"id":"' + id + '"}';
-//     }
-//     countdownnumber--;
-//     var show = document.getElementById("show_time");
-//     show.innerHTML = parseInt(countdownnumber / 60, 10) + "分" + (countdownnumber % 60) + "秒";
-// }
+    var element = document.body;
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swiperight", function(){
+        $('.mdl-layout__drawer').addClass('is-visible').attr('aria-hidden', 'false');
+        $('.mdl-layout__obfuscator').addClass('is-visible');
+    });
+
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swipeleft", function(){
+        $('.mdl-layout__drawer').removeClass('is-visible').attr('aria-hidden', 'true');
+        $('.mdl-layout__obfuscator').removeClass('is-visible');
+    });
+}).on('deviceready', onDeviceReady);
 
 function getPersonalData() {
     var url = server + 'get_personal_info.php?data={"id":"' + id + '"}';
@@ -63,7 +57,7 @@ function getPersonalData() {
             $('#pname2').html(name);
             $('#tel').html(phone);
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -90,7 +84,7 @@ function setPic() {
                 var result = "http://120.114.186.4:8080/carpool/" + xmlhttp.responseText.trim();
                 $('#user_image').attr('src', result);
             }
-        }
+        };
         xmlhttp.send();
     } else {
         $('#user_image').attr('src', 'http://graph.facebook.com/' + id + '/picture?type=large');
@@ -114,7 +108,7 @@ function setName(data, mode) {
             $('#image').attr('src', 'http://graph.facebook.com/' + data + '/picture?type=large');
             document.getElementById(mode).innerHTML = xmlhttp.responseText;
         }
-    }
+    };
     xmlhttp.send();
 }
 

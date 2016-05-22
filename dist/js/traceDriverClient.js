@@ -46,7 +46,7 @@ $(document).ready(function() {
     });
 
     $('#cancel').click(function() {
-        if (pid.length == 0) {
+        if (pid.length === 0) {
             window.location = local + 'index.html?data={"id":"' + did + '"}';
         }
 
@@ -67,6 +67,17 @@ $(document).ready(function() {
             sendGCM(data, count);
         }
 
+    });
+
+    var element = document.body;
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swiperight", function(){
+        $('.mdl-layout__drawer').addClass('is-visible').attr('aria-hidden', 'false');
+        $('.mdl-layout__obfuscator').addClass('is-visible');
+    });
+
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swipeleft", function(){
+        $('.mdl-layout__drawer').removeClass('is-visible').attr('aria-hidden', 'true');
+        $('.mdl-layout__obfuscator').removeClass('is-visible');
     });
 }).on('deviceready', onDeviceReady);
 
@@ -119,7 +130,7 @@ var DriverObj = function() {
             'Start': null,
             'End': null
         }
-    }
+    };
 };
 
 // passenger list and passenger object
@@ -140,7 +151,7 @@ var PassengerObj = function() {
             'Current': null,
             'InfoWindow': null
         }
-    }
+    };
 };
 
 function InitializeMap() {
@@ -213,7 +224,7 @@ function InitializeDriver() {
             // set map center to current point
             map.setCenter(driver.Point.Current);
         }
-    }
+    };
     xmlhttp.send();
 
     getPersonalData();
@@ -247,7 +258,7 @@ function getPersonalData() {
             $('#pname2').html(name);
             $('#tel').html(phone);
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -263,7 +274,7 @@ function setPic() {
                 var result = "http://120.114.186.4:8080/carpool/" + xmlhttp.responseText.trim();
                 $('#user_image').attr('src', result);
             }
-        }
+        };
         xmlhttp.send();
     } else {
         $('#user_image').attr('src', 'http://graph.facebook.com/' + did + '/picture?type=large');
@@ -280,7 +291,7 @@ function setPic2(index, id) {
             var res = "http://120.114.186.4:8080/carpool/" + xmlhttp.responseText.trim();
             $('#' + index).attr('src', res);
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -292,7 +303,7 @@ function sendGCM(data, count) {
             if (count == pid.length)
                 window.location = local + 'index.html?data={"id":"' + did + '"}';
         }
-    }
+    };
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
@@ -306,7 +317,7 @@ function updateHistory(hnum, mode) {
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {}
-    }
+    };
     xmlhttp.send();
 }
 
@@ -318,7 +329,7 @@ function updateFinished(finish) {
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {}
-    }
+    };
     xmlhttp.send();
 }
 
@@ -333,7 +344,7 @@ function addHistory(pindex) {
             AddPassenger(tid, path_index);
             hid.push(xmlhttp.responseText.trim());
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -348,7 +359,7 @@ function confirmCarpool() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             addHistory(path_index);
         }
-    }
+    };
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
@@ -430,7 +441,7 @@ function AddPassenger(id, index) {
             });
             passList[thePassIndex].Marker.InfoWindow.open(map, passList[thePassIndex].Marker.Current);
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -479,7 +490,7 @@ function UpdateView(re, pcurpoints) {
     }
 
     // update driver current point marker
-    if (driver.Marker.Current != null)
+    if (driver.Marker.Current !== null)
         driver.Marker.Current.setMap(null);
 
     driver.Marker.Current = new google.maps.Marker({
@@ -496,7 +507,7 @@ function UpdateView(re, pcurpoints) {
         // update the passenger current point marker
         passList[pIndex].Point.Current = new google.maps.LatLng(re[0].curpoint.at, re[0].curpoint.ng);
 
-        if (passList[pIndex].Marker.Current != null)
+        if (passList[pIndex].Marker.Current !== null)
             passList[pIndex].Marker.Current.setMap(null);
 
         passList[pIndex].Marker.Current = new google.maps.Marker({
@@ -524,7 +535,7 @@ function UpdateView(re, pcurpoints) {
 
         passList[thisIndex].Point.Current = new google.maps.LatLng(pcurpoints[i].curpoint.at, pcurpoints[i].curpoint.ng);
 
-        if (passList[thisIndex].Marker.Current != null)
+        if (passList[thisIndex].Marker.Current !== null)
             passList[thisIndex].Marker.Current.setMap(null);
 
         passList[thisIndex].Marker.Current = new google.maps.Marker({
@@ -702,7 +713,7 @@ function DetectCurPoint() {
                         // update screen infomation
                         UpdateView(result.calResult, result.passCurpoints);
                     }
-                }
+                };
                 xmlhttp.send();
             },
             function(error) {
@@ -750,7 +761,7 @@ function ConvertToGoogleLatLng(list) {
 // Prototype
 Array.prototype.last = function() {
     return this[this.length - 1];
-}
+};
 
 function setName(data, mode, status) {
     var url = server + 'get_name.php?data={"id":"' + data + '"}';
@@ -829,7 +840,7 @@ function setName(data, mode, status) {
             document.getElementById(mode).innerHTML = xmlhttp.responseText;
 
         }
-    }
+    };
     xmlhttp.send();
 }
 

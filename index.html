@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="dist/js/material.min.js"></script>
     <!-- custom css and js -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dist/css/style.css">
     <!-- custom alert and confirm -->
     <link rel="stylesheet" href="dist/css/alertify.core.css" />
     <link rel="stylesheet" href="dist/css/alertify.default.css" />
@@ -29,15 +29,13 @@
     </style>
 </head>
 
-<body id="mbody">
+<body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall">
-            <!-- Top row, always visible -->
             <div class="mdl-layout__header-row">
-                <!-- Title -->
                 <span class="android-title mdl-layout-title">
-        <a id="dsgr" href="index.html"><img src="assets/logo.png" width="50%"></a>
-         </span>
+                        <a id="dsgr" href="index.html"><img src="assets/logo.png" width="50%"></a>
+                    </span>
                 <div class="mdl-layout-spacer"></div>
             </div>
         </header>
@@ -69,10 +67,9 @@
                 <a class="mdl-navigation__link" href="about.html" id="about"><i class="material-icons">&#xE88E;</i>關於</a>
             </nav>
         </div>
-        <main class="mdl-layout__content">
+        <main data-role="content" class="mdl-layout__content">
             <div class="page-content">
                 <center>
-                    <!-- main content -->
                     <div class="backwall">
                         <img id="image" src="img/circle.png" alt="..." class="img-circle">
                         <br/>
@@ -174,12 +171,10 @@
                                 <div class="dialogContent">
                                     <div class="dialogContentBody">
                                         <p style="font-size: 18px;">確定退出嗎?</p>
-                                        <!-- <div class="mdl-dialog__actions mdl-dialog__actions--full-width"> -->
                                         <div>
                                             <button id="cancel2" class="mdl-button  mdl-js-button" style="text-align: left; width:47%;">取消</button>
                                             <button id="close" class="mdl-button  mdl-js-button mdl-button--primary" style="text-align: right; width:47%;">確定</button>
                                         </div>
-                                        <!-- </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +185,8 @@
         </main>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="push.js"></script>
+    <script type="text/javascript" src="dist/js/hammer.js"></script>
+    <script type="text/javascript" src="dist/js/push.js"></script>
     <script type="text/javascript" src="dist/js/facebookConnectPlugin.js"></script>
     <script type="text/javascript" src="dist/js/index.js"></script>
     <script type="text/javascript" src="dist/js/md5.js"></script>

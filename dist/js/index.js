@@ -12,6 +12,9 @@ var status = "";
 var check = false;
 var fbrig = false;
 
+
+
+
 $(document).ready(function() {
     document.addEventListener("backbutton", onBackKeyDown, false);
     url = window.location.toString();
@@ -46,7 +49,7 @@ $(document).ready(function() {
     $('#check').click(function() {
         var phone = $('#phone_number').val();
         var password = $('#password').val();
-        password = hex_md5(password);   //md5加密
+        password = hex_md5(password); //md5加密
         var url = server + 'check_member.php?data={"id":"' + phone + '","password":"' + password + '","regid":"' + regid + '"}';
         console.log(url);
         var xmlhttp = new XMLHttpRequest();
@@ -63,7 +66,7 @@ $(document).ready(function() {
                     alertify.success(res);
                 }
             }
-        }
+        };
         xmlhttp.send();
     });
 
@@ -111,7 +114,7 @@ $(document).ready(function() {
     //判斷手機號碼
     $("#phone").on("input propertychange", function() {
         phone = $(this).val();
-        if (phone == "") {
+        if (phone === "") {
             $('#phone_state').html('手機號碼不能為空!');
             check = false;
         } else {
@@ -131,7 +134,7 @@ $(document).ready(function() {
     //判斷手機號碼2
     $("#phone_number").on("input propertychange", function() {
         phone = $(this).val();
-        if (phone == "") {
+        if (phone === "") {
             $('#phone_state2').html('手機號碼不能為空!');
             check = false;
         } else {
@@ -151,7 +154,7 @@ $(document).ready(function() {
     //判斷Email
     $("#email").on("input propertychange", function() {
         email = $(this).val();
-        if (email == "") {
+        if (email === "") {
             $('#email_state').html('email不能為空!');
             check = false;
         } else {
@@ -164,7 +167,18 @@ $(document).ready(function() {
             }
         }
     });
-}).on('deviceready', onDeviceReady);
+
+    var element = document.body;
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swiperight", function(){
+        $('.mdl-layout__drawer').addClass('is-visible').attr('aria-hidden', 'false');
+        $('.mdl-layout__obfuscator').addClass('is-visible');
+    });
+
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swipeleft", function(){
+        $('.mdl-layout__drawer').removeClass('is-visible').attr('aria-hidden', 'true');
+        $('.mdl-layout__obfuscator').removeClass('is-visible');
+    });
+});
 
 function setURL() {
     $('#board').attr('href', local + 'board.html?data={"id":"' + id + '"}');
@@ -190,7 +204,7 @@ function getPersonalData() {
             rvalue = personalData.rating;
             status = personalData.status;
 
-            if (status == 0) {
+            if (status === 0) {
                 $('#login1').attr('style', 'display:none');
                 $('#login2').attr('style', 'display:none');
                 $('#test').attr('style', 'display:none');
@@ -228,7 +242,7 @@ function getPersonalData() {
             $('#name').html(name);
             $('#tel').html(phone);
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -246,7 +260,7 @@ function setPic() {
                 $('#dialog_image').attr('src', result);
                 $('#user_image').attr('src', result);
             }
-        }
+        };
         xmlhttp.send();
     } else {
         $('#image').attr('src', 'http://graph.facebook.com/' + id + '/picture?type=large');
@@ -280,7 +294,7 @@ function checkCarpool() {
                 setPic();
             }
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -310,7 +324,7 @@ function registerCarpool() {
             } else {
                 $('#register_state').html(xmlhttp.responseText);
             }
-        }
+        };
         xmlhttp.send();
     } else {
         $('#register_state').html('輸入欄位有誤!');
@@ -340,12 +354,12 @@ function setInfo(response) {
 var loginFacebook = function() {
     facebookConnectPlugin.login(["email"],
         function(response) {
-            apiTest()
+            apiTest();
         },
         function(response) {
             //alert(JSON.stringify(response))
         });
-}
+};
 var apiTest = function() {
     facebookConnectPlugin.api("me/?fields=id,name,gender,email,link", ["user_birthday"],
         function(response) {
@@ -354,7 +368,7 @@ var apiTest = function() {
         function(response) {
             //alert(JSON.stringify(response))
         });
-}
+};
 var logout = function() {
     facebookConnectPlugin.logout(
         function(response) {
@@ -363,7 +377,7 @@ var logout = function() {
         function(response) {
             //alert(JSON.stringify(response))
         });
-}
+};
 
 //確認device ready
 function onDeviceReady() {

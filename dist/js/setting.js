@@ -25,6 +25,17 @@ $(document).ready(function(e) {
     $('#status').click(function() {
         window.location = local + 'uncertified.html?data={"id":"' + id + '"}';
     });
+
+    var element = document.body;
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swiperight", function(){
+        $('.mdl-layout__drawer').addClass('is-visible').attr('aria-hidden', 'false');
+        $('.mdl-layout__obfuscator').addClass('is-visible');
+    });
+
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swipeleft", function(){
+        $('.mdl-layout__drawer').removeClass('is-visible').attr('aria-hidden', 'true');
+        $('.mdl-layout__obfuscator').removeClass('is-visible');
+    });
 });
 
 function getPersonalData() {
@@ -42,7 +53,7 @@ function getPersonalData() {
             $('#pname2').html(name);
             $('#tel').html(phone);
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -58,7 +69,7 @@ function setPic() {
                 var result = "http://120.114.186.4:8080/carpool/" + xmlhttp.responseText.trim();
                 $('#user_image').attr('src', result);
             }
-        }
+        };
         xmlhttp.send();
     } else {
         $('#user_image').attr('src', 'http://graph.facebook.com/' + id + '/picture?type=large');

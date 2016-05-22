@@ -16,6 +16,17 @@ $(document).ready(function() {
     getPersonalData();
     setPic();
     setURL();
+
+    var element = document.body;
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swiperight", function(){
+        $('.mdl-layout__drawer').addClass('is-visible').attr('aria-hidden', 'false');
+        $('.mdl-layout__obfuscator').addClass('is-visible');
+    });
+
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swipeleft", function(){
+        $('.mdl-layout__drawer').removeClass('is-visible').attr('aria-hidden', 'true');
+        $('.mdl-layout__obfuscator').removeClass('is-visible');
+    });
 });
 
 function getPersonalData() {
@@ -33,7 +44,7 @@ function getPersonalData() {
             $('#pname2').html(name);
             $('#tel').html(phone);
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -49,7 +60,7 @@ function setPic() {
                 var result = "http://120.114.186.4:8080/carpool/" + xmlhttp.responseText.trim();
                 $('#user_image').attr('src', result);
             }
-        }
+        };
         xmlhttp.send();
     } else {
         $('#user_image').attr('src', 'http://graph.facebook.com/' + id + '/picture?type=large');
@@ -66,7 +77,7 @@ function setPic2(index, id) {
             var res = "http://120.114.186.4:8080/carpool/" + xmlhttp.responseText.trim();
             $('#' + index).attr('src', res);
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -89,13 +100,13 @@ function requestAPI(url, data, mode) {
             var res = JSON.parse(xmlhttp.responseText);
             var str = "";
 
-            if (res.length == 0) {
+            if (res.length === 0) {
                 str += '<br/><div style="text-align: center; text-font: 24px;">尚無朋友</div>';
             } else {
                 var dpic = "";
                 for (var i = 0; i < res.length; i++) {
-                    var fid = res[i]['fid'];
-                    var fname = res[i]['name'];
+                    var fid = res[i].fid;
+                    var fname = res[i].name;
 
                     if (fid.length == 10 && fid.substr(0, 2) === "09")
                         setPic2('f' + i, fid);
@@ -110,7 +121,7 @@ function requestAPI(url, data, mode) {
             }
             document.getElementById(mode).innerHTML = str;
         }
-    }
+    };
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }

@@ -37,6 +37,17 @@ $(document).ready(function() {
     $('#add').click(function() {
         addFriend();
     });
+
+    var element = document.body;
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swiperight", function(){
+        $('.mdl-layout__drawer').addClass('is-visible').attr('aria-hidden', 'false');
+        $('.mdl-layout__obfuscator').addClass('is-visible');
+    });
+
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swipeleft", function(){
+        $('.mdl-layout__drawer').removeClass('is-visible').attr('aria-hidden', 'true');
+        $('.mdl-layout__obfuscator').removeClass('is-visible');
+    });
 });
 
 function getPersonalData() {
@@ -54,7 +65,7 @@ function getPersonalData() {
             $('#pname2').html(name);
             $('#tel').html(phone);
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -70,7 +81,7 @@ function setPic() {
                 var result = "http://120.114.186.4:8080/carpool/" + xmlhttp.responseText.trim();
                 $('#user_image').attr('src', result);
             }
-        }
+        };
         xmlhttp.send();
     } else {
         $('#user_image').attr('src', 'http://graph.facebook.com/' + id + '/picture?type=large');
@@ -87,7 +98,7 @@ function setPic2(index, id) {
             var res = "http://120.114.186.4:8080/carpool/" + xmlhttp.responseText.trim();
             $('#' + index).attr('src', res);
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -113,7 +124,7 @@ function check() {
             if (res.match("success"))
                 $('#add').css("display", "block");
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -135,14 +146,14 @@ function setName(data, mode) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             $('#' + mode).html(xmlhttp.responseText);
         }
-    }
+    };
     xmlhttp.send();
 }
 
 function addRating() {
     var comment = $('#comment').val();
     rate = $('#input-21e').val();
-    if (rate == 0) {
+    if (rate === 0) {
         alertify.success("最低評價為1分!");
     } else {
         var data = '{"id":"' + id + '","uid":"' + rid[index] + '","role":"' + role + '","rating":"' + rate + '","comment":"' + comment + '"}';
@@ -157,10 +168,10 @@ function addRating() {
                     $('#comment').val('');
                     setTarget();
                 } else if (index == rid.length) {
-                    window.location = local + 'index.html?data={"id":"' + id + '"}'
+                    window.location = local + 'index.html?data={"id":"' + id + '"}';
                 }
             }
-        }
+        };
         xmlhttp.send();
     }
 }
@@ -183,6 +194,6 @@ function addFriend() {
             else if (res.match("failed"))
                 status.innerHTML = '加入失敗';
         }
-    }
+    };
     xmlhttp.send();
 }

@@ -18,13 +18,24 @@ $(document).ready(function() {
     var json = JSON.parse(decodeURIComponent(str));
 
     regid = json.regid;
+
+    var element = document.body;
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swiperight", function(){
+        $('.mdl-layout__drawer').addClass('is-visible').attr('aria-hidden', 'false');
+        $('.mdl-layout__obfuscator').addClass('is-visible');
+    });
+
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swipeleft", function(){
+        $('.mdl-layout__drawer').removeClass('is-visible').attr('aria-hidden', 'true');
+        $('.mdl-layout__obfuscator').removeClass('is-visible');
+    });
 });
 
 //判斷密碼是否符合格式
-$("#rpassword").on("input propertychange", function() {
+$("#password").on("input propertychange", function() {
     password = $(this).val();
     $('#p_error').css("display", "inline");
-    if (password == "") {
+    if (password === "") {
         $('#p_error').html('密碼不能為空!');
         check1 = false;
     } else {
@@ -36,7 +47,6 @@ $("#rpassword").on("input propertychange", function() {
             check1 = false;
         } else {
             $('#p_error').html('');
-            password = hex_md5(password);   //md5加密
             check1 = true;
         }
     }
@@ -45,7 +55,7 @@ $("#rpassword").on("input propertychange", function() {
 //判斷密碼是否符合格式與是否與第一次密碼相同
 $("#password2").on("input propertychange", function() {
     password2 = $(this).val();
-    if (password2 == "") {
+    if (password2 === "") {
         $('#p2_error').html('密碼不能為空!');
         check2 = false;
     } else {
@@ -55,7 +65,7 @@ $("#password2").on("input propertychange", function() {
         } else if (password2.length < 6) {
             $('#p2_error').html('密碼長度錯誤!');
             check2 = false;
-        } else if (!password.match(password2)) {
+        } else if (password !== password2) {
             $('#p2_error').html('與第一次密碼不同!');
             check2 = false;
         } else {
@@ -68,7 +78,7 @@ $("#password2").on("input propertychange", function() {
 //判斷手機號碼
 $("#phone").on("input propertychange", function() {
     phone = $(this).val();
-    if (phone == "") {
+    if (phone === "") {
         $('#register_state').html('手機號碼不能為空!');
         check3 = false;
     } else {
@@ -88,7 +98,7 @@ $("#phone").on("input propertychange", function() {
 //判斷Email
 $("#email").on("input propertychange", function() {
     email = $(this).val();
-    if (email == "") {
+    if (email === "") {
         $('#email_state').html('email不能為空!');
         check4 = false;
     } else {
@@ -112,12 +122,8 @@ $('#regist_member').click(function() {
         } else {
             name = $('#lastname').val() + name;
         }
-
+        password = hex_md5(password);   //md5加密
         var gender = document.getElementById("male");
-        // if ($('input[name=options]:checked').val() == 1)
-        //     gender = "m";
-        // else if ($('input[name=options]:checked').val() == 2)
-        //     gender = "f";
 
         if (gender.checked)
             gender = "m";
@@ -150,7 +156,7 @@ $('#regist_member').click(function() {
                     alertify.success(res);
                 }
             }
-        }
+        };
         xmlhttp.send();
     } else {
         alertify.success("輸入欄位有誤!");
@@ -169,7 +175,7 @@ function sendEmail() {
             alertify.success("註冊成功!");
             window.location = local + 'uploadimg.html?data={"id":"' + phone + '", "verify":"' + verification + '"}';
         }
-    }
+    };
     xmlhttp.send();
 }
 

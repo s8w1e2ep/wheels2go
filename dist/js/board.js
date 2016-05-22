@@ -15,6 +15,17 @@ $(document).ready(function() {
     getPersonalData();
     setPic();
     setURL();
+
+    var element = document.body;
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swiperight", function(){
+        $('.mdl-layout__drawer').addClass('is-visible').attr('aria-hidden', 'false');
+        $('.mdl-layout__obfuscator').addClass('is-visible');
+    });
+
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swipeleft", function(){
+        $('.mdl-layout__drawer').removeClass('is-visible').attr('aria-hidden', 'true');
+        $('.mdl-layout__obfuscator').removeClass('is-visible');
+    });
 });
 
 function requestAPI(url) {
@@ -27,39 +38,39 @@ function requestAPI(url) {
             var ppic = "";
 
             for (var i = 0; i < data.length; i++) {
-                if (data[i]['did'].length == 10 && data[i]['did'].substr(0, 2) === "09")
-                    setPic2('d' + i, data[i]['did']);
+                if (data[i].did.length == 10 && data[i].did.substr(0, 2) === "09")
+                    setPic2('d' + i, data[i].did);
                 else
-                    dpic = 'http://graph.facebook.com/' + data[i]['did'] + '/picture/?type=normal';
+                    dpic = 'http://graph.facebook.com/' + data[i].did + '/picture/?type=normal';
 
-                if (data[i]['pid'].length == 10 && data[i]['pid'].substr(0, 2) === "09")
-                    setPic2('p' + i, data[i]['pid']);
+                if (data[i].pid.length == 10 && data[i].pid.substr(0, 2) === "09")
+                    setPic2('p' + i, data[i].pid);
                 else
-                    ppic = 'http://graph.facebook.com/' + data[i]['pid'] + '/picture/?type=normal';
+                    ppic = 'http://graph.facebook.com/' + data[i].pid + '/picture/?type=normal';
 
                 str += '<div class="mdl-grid" style="box-shadow:2px 2px 2px 2px rgba(20%,20%,40%,0.5); margin:10px;">';
                 str += '<div class="mdl-cell mdl-cell--4-col" style="border-bottom: 1px solid;border-bottom-color: rgba(0,0,0,.2);">';
                 str += '<div class="mdl-cell mdl-cell--2-col" style="float:left;">';
                 str += '<img id= "d' + i + '" src="' + dpic + '" class="avatar">';
                 str += '<h6 style="font-size: 1em;font-family: Microsoft YaHei;color: #F75000;">';
-                str += '<i class="material-icons" style="font-size: 1.5em;">&#xE531;</i>' + data[i]['dname'] + '/ ' + data[i]['dgender'] + '</h6>';
+                str += '<i class="material-icons" style="font-size: 1.5em;">&#xE531;</i>' + data[i].dname + '/ ' + data[i].dgender + '</h6>';
                 str += '</div>';
                 str += '<div class="mdl-cell mdl-cell--2-col" style="float:right;">';
                 str += '<img id= "p' + i + '" src="' + ppic + '" class="avatar">';
                 str += '<h6 style="font-size: 1em;font-family: Microsoft YaHei;color: #007979;">';
-                str += '<i class="material-icons" style="font-size: 1.5em;">&#xE536;</i>' + data[i]['pname'] + '/ ' + data[i]['pgender'] + '</h6>';
+                str += '<i class="material-icons" style="font-size: 1.5em;">&#xE536;</i>' + data[i].pname + '/ ' + data[i].pgender + '</h6>';
                 str += '</div>';
                 str += '</div>';
-                str += '<div class="mdl-cell mdl-cell--2-col">共乘日期</div><div class="mdl-cell mdl-cell--2-col">' + data[i]['time'] + '</div>';
-                str += '<div class="mdl-cell mdl-cell--2-col">共乘距離</div><div class="mdl-cell mdl-cell--2-col">' + data[i]['dis'] + '公尺</div>';
-                str += '<div class="mdl-cell mdl-cell--2-col">共乘情況</div><div class="mdl-cell mdl-cell--2-col">' + data[i]['finished'] + '</div>';
+                str += '<div class="mdl-cell mdl-cell--2-col">共乘日期</div><div class="mdl-cell mdl-cell--2-col">' + data[i].time + '</div>';
+                str += '<div class="mdl-cell mdl-cell--2-col">共乘距離</div><div class="mdl-cell mdl-cell--2-col">' + data[i].dis + '公尺</div>';
+                str += '<div class="mdl-cell mdl-cell--2-col">共乘情況</div><div class="mdl-cell mdl-cell--2-col">' + data[i].finished + '</div>';
                 str += '</div>';
 
             }
 
             document.getElementById('show').innerHTML = str;
         }
-    }
+    };
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
@@ -79,7 +90,7 @@ function getPersonalData() {
             $('#pname2').html(name);
             $('#tel').html(phone);
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -95,7 +106,7 @@ function setPic() {
                 var result = "http://120.114.186.4:8080/carpool/" + xmlhttp.responseText.trim();
                 $('#user_image').attr('src', result);
             }
-        }
+        };
         xmlhttp.send();
     } else {
         $('#user_image').attr('src', 'http://graph.facebook.com/' + id + '/picture?type=normal');
@@ -112,7 +123,7 @@ function setPic2(index, id) {
             var res = "http://120.114.186.4:8080/carpool/" + xmlhttp.responseText.trim();
             $('#' + index).attr('src', res);
         }
-    }
+    };
     xmlhttp.send();
 }
 

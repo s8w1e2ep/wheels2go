@@ -288,7 +288,6 @@ material design language.
 
 
 /*狀態*/
-
 .statewall {
     text-align: left;
     padding-left: 5%;
@@ -300,9 +299,7 @@ material design language.
     border-bottom-color: rgba(0, 0, 0, 0.1);
 }
 
-
 /*首頁大頭貼*/
-
 .backwall {
     padding-top: 16px;
     padding-bottom: 5px;

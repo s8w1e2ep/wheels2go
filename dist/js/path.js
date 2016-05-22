@@ -21,6 +21,17 @@ function initialize() {
     getPersonalData();
     setPic();
     setURL();
+
+    var element = document.body;
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swiperight", function(){
+        $('.mdl-layout__drawer').addClass('is-visible').attr('aria-hidden', 'false');
+        $('.mdl-layout__obfuscator').addClass('is-visible');
+    });
+
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swipeleft", function(){
+        $('.mdl-layout__drawer').removeClass('is-visible').attr('aria-hidden', 'true');
+        $('.mdl-layout__obfuscator').removeClass('is-visible');
+    });
 }
 
 function setURL() {
@@ -49,7 +60,7 @@ function getPersonalData() {
             $('#pname2').html(name);
             $('#tel').html(phone);
         }
-    }
+    };
     xmlhttp.send();
 }
 
@@ -65,7 +76,7 @@ function setPic() {
                 var result = "http://120.114.186.4:8080/carpool/" + xmlhttp.responseText.trim();
                 $('#user_image').attr('src', result);
             }
-        }
+        };
         xmlhttp.send();
     } else {
         $('#user_image').attr('src', 'http://graph.facebook.com/' + id + '/picture?type=large');
@@ -81,17 +92,17 @@ function requestAPI(url, data) //傳資料給php
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var jstr = xmlhttp.responseText; //php回傳的媒合結果--json string
 
-            if (jstr.match("NoDriver") != null) {
+            if (jstr.match("NoDriver") !== null) {
                 alertify.success("沒有司機符合評價與性別門檻");
-            } else if (jstr.match("NoOverlap") != null) {
+            } else if (jstr.match("NoOverlap") !== null) {
                 alertify.success("沒有重疊路徑");
-            } else if (jstr.match("NoMatch") != null) {
+            } else if (jstr.match("NoMatch") !== null) {
                 alertify.success("沒有司機符合媒合條件");
             } else {
                 window.location = local + 'result.html?data=' + jstr; //跳轉到result頁面
             }
         }
-    }
+    };
     xmlhttp.send('data=' + data);
 }
 
@@ -102,7 +113,8 @@ function nextStep(pathJSON, PathLength) {
     temp_json = JSON.stringify(json);
 
     //passenger json
-    passenger_json = file.substring(0, file.length - 1) + ',"path":' + pathJSON + ',"total":' + PathLength + ',"start":' + '{"at":"' + (new Number(StartPoint.lat())).toFixed(14) + '","ng":"' + (new Number(StartPoint.lng())).toFixed(14) + '"}' + ',"end":' + '{"at":"' + (new Number(pathTemp[pathTemp.length - 1].at)).toFixed(14) + '","ng":"' + (new Number(pathTemp[pathTemp.length - 1].ng)).toFixed(14) + '"}}';
+    passenger_json = file.substring(0, file.length - 1) + ',"path":' + pathJSON + ',"total":' + PathLength + ',"start":' + '{"at":"' + (Number(StartPoint.lat())).toFixed(14) + '","ng":"' + (Number(StartPoint.lng())).toFixed(14) + '"}' +
+    ',"end":' + '{"at":"' + (Number(pathTemp[pathTemp.length - 1].at)).toFixed(14) + '","ng":"' + (Number(pathTemp[pathTemp.length - 1].ng)).toFixed(14) + '"}}';
     //driver json
     driver_json = temp_json.substring(0, temp_json.length - 1) + ',"path":' + pathJSON + '}';
 
@@ -117,7 +129,7 @@ function nextStep(pathJSON, PathLength) {
                 var res = xmlhttp.responseText;
                 window.location = local + 'traceDriverPage.html?data=' + res;
             }
-        }
+        };
         xmlhttp.send('data=' + driver_json);
     } else if (role == "passenger") {
         requestAPI(server + "path.php", passenger_json);

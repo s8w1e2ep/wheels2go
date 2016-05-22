@@ -10,7 +10,7 @@ var countdownid, x;
 
 function countdownfunc() {
     x.innerHTML = countdownnumber;
-    if (countdownnumber == 0) {
+    if (countdownnumber === 0) {
         alertify.success("請重寄驗證信");
         clearInterval(countdownid);
         window.location = local + 'index.html?data={"id":"' + id + '"}';
@@ -33,6 +33,17 @@ $(document).ready(function() {
     x.innerHTML = countdownnumber;
     countdownnumber--;
     countdownid = window.setInterval(countdownfunc, 1000);
+
+    var element = document.body;
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swiperight", function(){
+        $('.mdl-layout__drawer').addClass('is-visible').attr('aria-hidden', 'false');
+        $('.mdl-layout__obfuscator').addClass('is-visible');
+    });
+
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swipeleft", function(){
+        $('.mdl-layout__drawer').removeClass('is-visible').attr('aria-hidden', 'true');
+        $('.mdl-layout__obfuscator').removeClass('is-visible');
+    });
 });
 
 $('#send').click(function() {
@@ -46,7 +57,7 @@ $('#send').click(function() {
             alertify.success("寄送成功!");
             countdownnumber = 300;
         }
-    }
+    };
     xmlhttp.send();
 });
 
@@ -119,7 +130,7 @@ $('#check').click(function() {
     var params = {};
     options.params = params;
 
-    var upload = 'http://120.114.186.4:8080/carpool/uploadimg.php?data={"id":"' + id + '"}'
+    var upload = 'http://120.114.186.4:8080/carpool/uploadimg.php?data={"id":"' + id + '"}';
 
     if (user_verify.match(verify)) {
         ft.upload(imgurl, encodeURI(upload), success, error, options);
@@ -130,7 +141,11 @@ $('#check').click(function() {
 
 function success(res) {
     alertify.success("圖片上傳成功");//('圖片上傳成功!' + JSON.stringify(res));
-    setTimeout("window.location = local + 'index.html'", 2000);
+    setTimeout(redirect, 2000);
+}
+
+function redirect(){
+    window.location = local + 'index.html';
 }
 
 function error(error) {

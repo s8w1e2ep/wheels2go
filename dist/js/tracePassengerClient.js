@@ -33,7 +33,7 @@ $(document).ready(function() {
                 xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xmlhttp2.onreadystatechange = function() {
                     if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {}
-                }
+                };
                 xmlhttp2.send();
                 removeDriver();
 
@@ -48,9 +48,9 @@ $(document).ready(function() {
                     });
                     data2 = JSON.stringify(data2);
                     data2 = data2.substring(1, data2.length - 1);
-                    var xmlhttp2 = new XMLHttpRequest();
+                    var xmlhttp3 = new XMLHttpRequest();
                     url = server + 'gcm_server.php?data=' + data2;
-                    xmlhttp2.onreadystatechange = function() {
+                    xmlhttp3.onreadystatechange = function() {
                         if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
                             count++;
                             if (count == did.length) {
@@ -58,13 +58,13 @@ $(document).ready(function() {
                                 window.location = local + 'rating.html?data={"id":"' + pid + '","pnum":"' + pnum + '","role":"passenger","rid":' + arr_str + '}';
                             }
                         }
-                    }
+                    };
                     xmlhttp2.open("GET", url, true);
                     xmlhttp2.send();
 
                 }
             }
-        }
+        };
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
     });
@@ -137,6 +137,17 @@ $(document).ready(function() {
             xmlhttp.open("GET", url, true);
             xmlhttp.send();
         }
+    });
+
+    var element = document.body;
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swiperight", function(){
+        $('.mdl-layout__drawer').addClass('is-visible').attr('aria-hidden', 'false');
+        $('.mdl-layout__obfuscator').addClass('is-visible');
+    });
+
+    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swipeleft", function(){
+        $('.mdl-layout__drawer').removeClass('is-visible').attr('aria-hidden', 'true');
+        $('.mdl-layout__obfuscator').removeClass('is-visible');
     });
 }).on('deviceready', onDeviceReady);
 

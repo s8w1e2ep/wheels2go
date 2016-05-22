@@ -6,14 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DSGer</title>
-    <!-- Page styles -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="dist/js/jquery-1.9.1.min.js"></script>
+    <!-- google material lite -->
     <link rel="stylesheet" href="dist/css/material.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <script src="dist/js/material.min.js"></script>
+    <!-- custom alert and confirm -->
+    <!-- Page styles -->
+    <link rel="stylesheet" href="dist/css/style.css">
     <link rel="stylesheet" href="dist/css/styles.css">
     <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+    <!-- [if lt IE 9]>
+        <script src="dist/js/html5shiv.js"></script>
+    <![endif] -->
+    <!-- Uses a header that contracts as the page scrolls down. -->
     <style>
     #view-source {
         position: fixed;
@@ -24,17 +32,17 @@
         margin-bottom: 40px;
         z-index: 900;
     }
-    
+
     .demo-card-wide.mdl-card {
         width: 40%;
     }
-    
+
     .demo-card-wide > .mdl-card__title {
         color: #fff;
         height: 10%;
         background: url('assets/welcome_card.jpg') center / cover;
     }
-    
+
     .demo-card-wide > .mdl-card__menu {
         color: #fff;
     }
@@ -48,8 +56,8 @@
             <div class="mdl-layout__header-row">
                 <!-- Title -->
                 <span class="mdl-layout-title" style="width: 75px;">
-      <a id="dsgr" href="index.html"><img src="assets/logo.png" width="100%"></a>
-      </span>
+                    <a id="dsgr" href="index.html"><img src="assets/logo.png" width="100%"></a>
+                </span>
                 <!-- Add spacer, to align navigation to the right -->
                 <div class="mdl-layout-spacer"></div>
                 <div id="number" class="icon material-icons mdl-badge" data-badge="0">account_box</div>
@@ -73,16 +81,15 @@
         </div>
         <main class="mdl-layout__content">
             <div class="page-content">
-                <br></br>
+                <br/><br/>
                 <center>
                     <div id="card"></div>
                 </center>
             </div>
         </main>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="dist/js/material.min.js"></script>
     <script src="dist/js/uncertified.js"></script>
+    <script src="dist/js/hammer.js"></script>
 </body>
 
 </html>
