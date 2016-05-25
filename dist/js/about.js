@@ -24,12 +24,18 @@ $(document).ready(function() {
     }
 
     var element = document.body;
-    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swiperight", function(){
+    Hammer(element, {
+        prevent_default: true,
+        no_mouseevents: true
+    }).on("swiperight", function() {
         $('.mdl-layout__drawer').addClass('is-visible').attr('aria-hidden', 'false');
         $('.mdl-layout__obfuscator').addClass('is-visible');
     });
 
-    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swipeleft", function(){
+    Hammer(element, {
+        prevent_default: true,
+        no_mouseevents: true
+    }).on("swipeleft", function() {
         $('.mdl-layout__drawer').removeClass('is-visible').attr('aria-hidden', 'true');
         $('.mdl-layout__obfuscator').removeClass('is-visible');
     });

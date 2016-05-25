@@ -141,12 +141,18 @@ $('#check').click(function() {
 
 function success(res) {
     alertify.success("圖片上傳成功");//('圖片上傳成功!' + JSON.stringify(res));
-    setTimeout(redirect, 2000);
+    var url = server + 'send_email.php?data={"id":"860467000642654"}';
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", url, true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          window.location = local + 'index.html';
+        }
+    };
+    xmlhttp.send();
 }
 
-function redirect(){
-    window.location = local + 'index.html';
-}
 
 function error(error) {
     console.log(error.code);

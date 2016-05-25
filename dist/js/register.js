@@ -20,12 +20,18 @@ $(document).ready(function() {
     regid = json.regid;
 
     var element = document.body;
-    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swiperight", function(){
+    Hammer(element, {
+        prevent_default: true,
+        no_mouseevents: true
+    }).on("swiperight", function() {
         $('.mdl-layout__drawer').addClass('is-visible').attr('aria-hidden', 'false');
         $('.mdl-layout__obfuscator').addClass('is-visible');
     });
 
-    Hammer(element, {prevent_default:true, no_mouseevents:true}).on("swipeleft", function(){
+    Hammer(element, {
+        prevent_default: true,
+        no_mouseevents: true
+    }).on("swipeleft", function() {
         $('.mdl-layout__drawer').removeClass('is-visible').attr('aria-hidden', 'true');
         $('.mdl-layout__obfuscator').removeClass('is-visible');
     });
@@ -122,7 +128,7 @@ $('#regist_member').click(function() {
         } else {
             name = $('#lastname').val() + name;
         }
-        password = hex_md5(password);   //md5加密
+        password = hex_md5(password); //md5加密
         var gender = document.getElementById("male");
 
         if (gender.checked)

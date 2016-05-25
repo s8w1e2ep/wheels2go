@@ -204,17 +204,15 @@ function getPersonalData() {
             rvalue = personalData.rating;
             status = personalData.status;
 
-            if (status === 0) {
-                $('#login1').attr('style', 'display:none');
-                $('#login2').attr('style', 'display:none');
-                $('#test').attr('style', 'display:none');
+            $('#login1').attr('style', 'display:none');
+            $('#login2').attr('style', 'display:none');
+            $('#test').attr('style', 'display:none');
+
+            if (status === '0') {
                 $('#state').html('尚未審核');
                 $('#name').html('Hi, ' + name);
                 $('#dialog_name').html(name);
-            } else if (status == 1) {
-                $('#login1').attr('style', 'display:none');
-                $('#login2').attr('style', 'display:none');
-                $('#test').attr('style', 'display:none');
+            } else if (status === '1') {
                 $('#state').html('已登入');
                 $('#rbox').css("display", "block");
                 $('#gbox').css("display", "block");
