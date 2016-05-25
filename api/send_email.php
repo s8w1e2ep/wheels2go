@@ -26,7 +26,7 @@ $mail->IsSMTP();
 $mail->SMTPAuth = true; // turn on SMTP authentication
 $mail->CharSet = "utf8"; //設定郵件編碼
 
-$mail->Username = "letscarpoolapp@gmail.com";
+$mail->Username = "wheels2goapp@gmail.com";
 $mail->Password = "CarpoolRoot";
 
 $mail->FromName = "Carpool";
