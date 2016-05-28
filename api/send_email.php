@@ -26,12 +26,12 @@ $mail->IsSMTP();
 $mail->SMTPAuth = true; // turn on SMTP authentication
 $mail->CharSet = "utf8"; //設定郵件編碼
 
-$mail->Username = "wheels2goapp@gmail.com";
+$mail->Username = "letscarpoolapp@gmail.com";
 $mail->Password = "CarpoolRoot";
 
-$mail->FromName = "Carpool";
+$mail->FromName = "Wheels2go";
 // 寄件者名稱(你自己要顯示的名稱)
-$webmaster_email = "letscarpoolapp@gmail.com";
+$webmaster_email = "wheels2goapp@gmail.com";
 //回覆信件至此信箱
 
 $name = "user"; // 收件者的名稱or暱稱
@@ -44,8 +44,8 @@ $mail->WordWrap = 50; //每50行斷一次行
 // 附加檔案可以用這種語法(記得把上一行的//去掉)
 
 $mail->IsHTML(true); // send as HTML
-$mail->Subject = "Carpool驗證信"; // 信件標題
-$mail->Body = "Carpool email驗證，您的email驗證碼為:<b>" . $verification . "</b>"; //信件內容(html版，就是可以有html標籤的如粗體、斜體之類)
+$mail->Subject = "Wheels2go驗證信"; // 信件標題
+$mail->Body = "Wheels2go email驗證，您的email驗證碼為:<b>" . $verification . "</b>"; //信件內容(html版，就是可以有html標籤的如粗體、斜體之類)
 //$mail->AltBody = "信件內容";
 //信件內容(純文字版)
 
