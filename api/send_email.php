@@ -29,9 +29,9 @@ $mail->CharSet = "utf8"; //設定郵件編碼
 $mail->Username = "letscarpoolapp@gmail.com";
 $mail->Password = "CarpoolRoot";
 
-$mail->FromName = "Wheels2go";
+$mail->FromName = "Carpool";
 // 寄件者名稱(你自己要顯示的名稱)
-$webmaster_email = "wheels2goapp@gmail.com";
+$webmaster_email = "letscarpoolapp@gmail.com";
 //回覆信件至此信箱
 
 $name = "user"; // 收件者的名稱or暱稱
